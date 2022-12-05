@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--     <style> .loader {
+  position: fixed;
+  background-color: yellow;
+  opacity: 1;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+</style>
+<div class="loader">
+  <div class="loading-screen">
+    Loading...
+  </div> -->
+<!-- </div> -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>US Energy</title>
+
+    <!-- Load CSS files -->
+
+    <!-- Milligram CSS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+    />
+
+    <!-- You CSS rules-->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Load Javascript files -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+    ></script>
+    <!--     <script defer src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script defer src="https://unpkg.com/d3-array@1"></script>
+    <script defer src="https://unpkg.com/d3-collection@1"></script>
+    <script defer src="https://unpkg.com/d3-path@1"></script>
+    <script defer src="https://unpkg.com/d3-shape@1"></script>
+    <script defer src="https://unpkg.com/d3-sankey@0"></script>
+    <script
+      defer
+      src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"
+    ></script>
+    <script defer src="https://unpkg.com/topojson@3"></script>
+
+    <!-- Your code -->
+    <!-- Ilan code -->
+    <script src="/ilan-emiss-prod.js" defer></script>
+    <script src="/ilan-sankey.js" defer></script>
+    <!-- Steve Code -->
+     <!-- Mike Code -->
+    <script src="potential.js" defer></script>
+    <script src="potentialBar.js" defer></script>
+    <!-- Connor Code -->
+    <script src="/budget-breakdown.js" defer></script>
+    <!--     <script src="/spending-comparison.js" defer></script> -->
+    <!--Vega Lite-->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+    <!--<script src="wind.js" defer></script> -->
+    <script src="wind_main.js" defer type="module"></script>
+  </head>
+  <body>
+    <!-- Title: add authors -->
+    <div class="title-box">
+      <div class="title">Renewable Energy In the United States</div>
+      <div class="authors">
+      Ilan Valencius, Steven Maniscalco, Connor Goodman, Michael Klein
+      </div>
+      <div class="btn">
+      <a class="button" href="about.html">Project Info</a>
+    </div>
+    </div>
+    <!-- Link to about documentation -->
+    
+    <div class="section">
+      <div class="section-header">
+        Why is renewable energy important?
+        <div class="section-subheader">
+          Climate change is one of the biggest problems humanity has ever faced.
+          At the core of the problem is our reliance on fossil fuels, a
+          <strong>nonrenewable</strong> energy source formed via the breakdown
+          of organic matter at great pressures and temepratures. Burning fossil
+          fuels produces <strong>greenhouse gases</strong> which trap heat that
+          would have otherwise escaped the Earth's atmosphere, a process known
+          as the <strong>greenhouse affect</strong>. Can
+          <strong>renewable</strong> energy sources help solve this problem?
+          Take a look at the two graphs below and make a prediction for how you
+          think fossil fuel emissions in the United States have changed after
+          2005. Do the same for renewable energy production.
+          <strong>Click the box</strong> hiding the data to see if you were
+          right. Do you think the two <strong>correlated</strong>?
+        </div>
+      </div>
+      <div class="section-contents">
+        <div class="row">
+          <div class="column">
+            <h3>Emissions due to Fossil Fuel Energy Production</h3>
+            <div class="emiss-chart"></div>
+          </div>
+          <div class="column">
+            <h3>Renewable Energy Production</h3>
+            <div class="renew-annual-chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        Where does our energy currently come from and where does it go?
+        <div class="section-subheader">
+          Investigate the <strong>sankey diagram</strong> below to get a sense
+          of how the United States uses its energy. <br /><br /><strong
+            >Node</strong
+          >→ the rectangles, indicate a category of energy use
+          <br /><br /><strong>Link</strong>→ flow from <strong>left</strong> to
+          <strong>right</strong> and indicate how energy is produced and then
+          transported throughout the US. <br /><br />Click a
+          <strong>node</strong> to highlight all energy that passes through it.
+          As an example click the annotated node. Click it again to revert back
+          to the original diagram...or click another node! <br /><br /><strong
+            >Takeaways:</strong
+          >
+          Most of the renewable energy in the US is used for electricity
+          generation. Certain industries, such as the transportation industry
+          are very relient on fossil fuels. <br /><br />One
+          <strong>quad</strong> is 1 quadrillion British Thermal Units (BTUs).
+          Conveniently, the United States uses about 100 quads each year,
+          meaning that one quad is roughly equal to 1 percent of the country's
+          total national annual energy use. Source:
+          <a
+            href="https://www.otherlab.com/blog-posts/us-energy-flow-super-sankey"
+            target="blank"
+          >
+            https://www.otherlab.com/blog-posts/us-energy-flow-super-sankey</a
+          >
+        </div>
+      </div>
+      <div class="section-contents">
+        <!--         <h2>How is our energy produced and used? (Ilan)</h2> -->
+        <div class="energy-sankey">
+          <!--           <div id="sankey-tooltip"></div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        How much renewable energy is the United States capable of producing?
+        <div class="section-subheader">
+            <em>Context: </em> 
+          <strong>Renewables</strong> currently generate around <strong>20%</strong> of US energy. For a more sustainable future, <strong>renewables</strong> will need to account for <strong>nearly all of our energy production</strong>. 
+            In this section, we examine where this increase can come from. 
+            <br><br>
+          <strong>Renewable energy technical potential</strong> as defined in this report represents the <strong>achievable energy generation</strong> of a particular technology given system performance, 
+            topographic limitations, environmental, and land-use constraints.
+          
+            <br> <br>
+            <em>Description: </em>
+            This map contains the technical potential of each state in Gigawatt hours (GWh) for five renewable energy sources.
+            <br> <br>
+            <em>How To Use: </em>
+            <strong>Select</strong> the type of energy you wish to view from the dropdown menu. <strong>Hover</strong> over a state to see its exact technical potential.  
+          </div>
+      </div>
+      <div class="section-contents">
+        <h1>Renewable Energy Production Capacity</h1>
+        <br />
+        <div class="user-control">
+          &nbsp Energy Source:
+          <select id="energySelector" class="form-control">
+            <option value="Solar">Solar</option>
+            <option value="Wind">Wind</option>
+            <option value="Biopower">Biopower</option>
+            <option value="Geothermal">Geothermal</option>
+            <option value="Hydropower">Hydropower</option>
+          </select>
+        </div>
+        <div class="potential">
+        </div>
+        
+<!--         <div class="row">
+          <div class="column">
+            <div class="barSmall"></div>
+          </div>
+          <div class="column">
+            <div class="barMed"></div>
+          </div>
+        </div> -->
+        
+<!--         <br /> -->
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        How Much Does the USA Spend on R&D for Renewable Energy in Comparison to Other Countries?
+          <div class="section-subheader">
+            <em>Context: </em> 
+            As the U.S. looks to make a shift towards renewable energy, it is important that it looks <strong>internationally</strong> to gauge its progress.
+            With the U.S. looking to make a shift towards renewable energy, it is important that it looks <strong>internationally</strong> to gauge its progress.
+            <br> <br>
+            <em>Description: </em>
+            This graph displays a comparison of <strong>Renewable Energy R&D budgets</strong> amongst <strong>IEA</strong>(International Energy Agency) countries. The budgets (y-axis) are quantified by Total 
+            <strong>public</strong> RD&D expenditure data, converted from current prices in national currencies to <strong>US dollar PPPs</strong> in
+            constant <strong>2021</strong> prices using GDP deflators and 2021 PPPs. <strong>Purchasing power parities</strong> (PPPs) are the rates of currency conversion that eliminate the differences in price
+            levels between countries.
+            <br> <br>
+            <em>How To Use: </em>
+            If you want to analyze a country individually, hover over a line or click on it's legend point to highlight it.  
+          </div>
+        </div>
+      <div class="section-contents">
+        <div class="center">
+          <div class="renewableSpendingLine">
+            <script>
+              const spec = {
+                width: 1200,
+                height: 1000,
+                "autosize": {
+                    "type": "fit",
+                },
+                $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+                data: { name: "budgets", url: "energy-budgets.csv" },
+                transform: [
+                  { filter: "datum.FLOW=='RENEWABLE'" },
+                  { filter: "datum.PRODUCT =='RDDUSDPPP'" },
+                  { filter: "datum.VALUE !=='..'" },
+                ],
+                encoding: {
+                  x: { field: "TIME", type: "temporal", title: "Year" },
+                  y: {
+                    field: "VALUE",
+                    type: "quantitative",
+                    title: "Spending (in millions USD)",
+                  },
+                  color: {
+                    condition: {
+                      param: "hover",
+                      field: "COUNTRY",
+                      type: "nominal",
+                      legend: {
+                        symbolLimit: "40"
+                      }
+                    },
+                    value: "grey",
+                  },
+                  opacity: {
+                    condition: { param: "hover", value: 1 },
+                    value: 0.2
+                  },
+                },
+                layer: [
+                  {
+                    description:
+                      "transparent layer to make it easier to trigger selection",
+                    params: [
+                      {
+                        name: "hover",
+                        value: [{ COUNTRY: "USA" }],
+                        select: {
+                          type: "point",
+                          fields: ["COUNTRY"], 
+                          on: "mouseover",
+                        },
+                        bind: "legend"
+                      },
+                    ],
+                    mark: {
+                      type: "line",
+                      strokeWidth: 8,
+                      stroke: "transparent",
+                    },
+                  },
+                  { mark: "line" },
+                  {
+                    encoding: {
+                      x: { aggregate: "max", field: "TIME" },
+                      y: { aggregate: { argmax: "TIME" }, field: "VALUE" },
+                    },
+                    layer: [
+                      { mark: { type: "circle" } },
+                      {
+                        mark: { type: "text", align: "left", dx: 4 },
+                        encoding: {
+                          text: { field: "COUNTRY", type: "nominal" },
+                        },
+                      },
+                    ],
+                  },
+                ],
+                config: { view: { stroke: null } },
+              };
+              vegaEmbed(".renewableSpendingLine", spec, { mode: "vega-lite" })
+                .then(console.log)
+                .catch(console.warn);
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <div class="section">
+      <div class="section-header">How Much Does the USA Spend on Renewable Energy R&D Relative to Other Types of Energy?
+        <div class="section-subheader">
+          <em>Context: </em>
+          A big component in the fight against climate change is phasing out energy fuels that emit high levels of greenhouse gasses,
+          such as fossil fuels, and replacing them with cleaner enegies like nuclear and renewables. 
+          <br><br>
+          <em>Description: </em>
+          This visualization shows the <strong>evolution</strong> of how the U.S. has allocated their Energy R&D budget spending over time. 
+          Each bar represents a unique sector of the U.S Energy R&D budget. The bars, like the above chart, encode current prices in national 
+          currencies to <strong>US dollar PPPs</strong> in constant <strong>2021</strong> prices using GDP deflators and 2021 PPPs. 
+          <br><br>
+          <em>How To Use: </em>
+          Slide across the timeline and observe how the bars change over the years. Hover over a bar to reveal the exact number that the bar represents
+        </div>
+      </div>
+      <div class="section-contents">
+<!--         <div class="center"> -->
+          <div class="budgetBreakdownBar"></div>
+          <div class="timeline"></div>
+<!--         </div> -->
+      </div>
+    </div>
+    <br />
+        
+
+<!--     <h1>Wind Power Generation in depth</h1>
+    <p>
+      Examines wind turbine distribution in the US and analyzes different
+      variables related to wind development at the county level.
+    </p>
+    <ul>
+      <li>
+        Choropleth US county map with dropdown menu to select variable to color
+        map. Turbine distribution will be overlayed on top.
+      </li>
+      <li>
+        Scatter plot of number of turbines per county vs. selected variable in
+        dropdown menu. Points will be individual counties. Scatter plot and map
+        will be linked together through brushing.
+      </li>
+    </ul> -->
+    <div class="section">
+      <div class="section-header">
+        Renewable Case Study: Is the Current Distribution of Onshore Wind
+        Turbines in the United States Efficient?
+        <div class="section-subheader">
+          <em>Context:</em>
+          Of the many types of renewable energy, wind power has emerged in the
+          U.S. as one of the most <strong>popular</strong> choices. Wind power
+          generation can be split into 2 groups: offshore wind and
+          <strong>onshore wind</strong>. <br> <br>
+          <em>Description:</em>
+          Here, we focus on the
+          <strong> distribution</strong> of onshore wind turbines in the U.S. at
+          the <strong>county level</strong> with the goal of identifying whether
+          turbines are <strong>allocated efficiently</strong> based on these
+          variables:
+          <ul>
+            <li>Average Wind Speed - average county wind speed (m/s)</li>
+            <li>
+              Fraction of Usable Area Available - average area in the county
+              that is available for onshore wind development
+            </li>
+            <li>
+              Average Potential Turbine Capacity Factor - estimated average
+              potential rate at which a turbine could operate at maximum power
+            </li>
+            <li>
+              Population - total number of people living in the county (based on
+              2021 US Census) 
+            </li>
+          </ul>
+          The <strong>first map</strong> below provides an enlarged view of the onshore <strong>wind turbine distribution</strong> 
+          in the United States. Each <strong>county</strong> with a reported turbine has a <strong>red circle</strong> centered over it. 
+          The <strong>size</strong> of the circle is based on the <strong>number of turbines</strong> in the county.
+          <br><br>
+          The <strong>second map</strong> outlines each county in the U.S. and is paired with the <strong>selection menus</strong>
+          above and <strong>scatter plot</strong> to the right.
+          <br><br>
+          <em>How to Use:</em>
+          From the dropdown menu, <strong>select</strong> the variable you
+          would like to investigate. This will update both the scatter plot and
+          choropleth map. <strong>Brush</strong> the scatter plot (by clicking and dragging) to highlight
+          the corresponding counties on the map. Each <strong>circle</strong> on
+          the scatter plot <strong>represents a county</strong>, and the
+          <strong>X-axis</strong> is updated based on the selected variable. The
+          choropleth map is <strong>colored</strong> based on the selected
+          variable, with lighter shades indicating lower values, darker shades
+          indicating higher values, and white indicating that data for the
+          selected variable is <strong>not available</strong> for that county.*
+          The <strong>black circles</strong> on the map represent where <strong>turbines</strong> are located in the United States,
+          with the size of the circle corresponding to the number of turbines in the county. This distribution
+          is identical to the one shown on the larger map. These circles can be
+          <strong>toggled</strong> on and off by <strong>clicking</strong> the respective toggle <strong>bubble</strong>.
+          <br><br>
+          <span id="popDisclaimer">*Because the maximum county population is so much larger than other populations, the 
+          darkest shade is applied to counties with at least 2,000,000 people.</span>
+        </div>
+      </div>
+      <div class="section-contents">
+        <h1 id="turbMapHeader">Distribution of Wind Turbines in the United States</h1>
+        <h3 id="turbMapSub">the larger the circle, the more turbines</h3>
+        <div class="turbine-map"></div>
+        <div class="user-control">
+          &nbsp <b>Variable Selection:</b>
+          <select id="choiceSelector" class="form-control">
+            <option value="avg_wind_speed">Wind Speed</option>
+            <option value="avg_fraction_of_usable_area">
+              Fraction of Usable Area
+            </option>
+            <option value="avg_capacity_factor">Capacity Factor</option>
+            <option value="population">Population</option>
+          </select>
+          <b>Toggle Turbine Distribution:</b> &nbsp &nbsp
+          <input type="radio" id="radioSelection2" name="toggleTurbines" value="choice1" checked> ON &nbsp &nbsp
+          <input type="radio" id="radioSelection" name="toggleTurbines" value="choice2" > OFF
+        </div>
+        <div id="windContent" class="row">
+          <div class="column">
+            <div class="windMap"></div>
+          </div>
+          <div class="column">
+            <div class="windScatter"></div>
+            <!-- How does the selected variable impact the number of wind turbines in a county? -->
+          </div>
+        </div>
+      </div>
+      <br>
+      <h2 class="takeaways">Takeaways</h2>
+      <br>
+    </div>
+  </body>
+<!--     <style>
+.loader {
+    -webkit-animation: load-out 8s;
+    animation: load-out 8s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes load-out {
+    from {
+/*         top: 0; */
+        opacity: 1;
+    }
+
+    to {
+/*         top: 100%; */
+        opacity: 0;
+    }
+}
+
+@keyframes load-out {
+    from {
+/*         top: 0; */
+        opacity: 1;
+    }
+
+    to {
+/*         top: 100%; */
+        opacity: 0;
+    }
+}
+</style> -->
+</html>

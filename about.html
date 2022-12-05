@@ -1,0 +1,107 @@
+<div>
+  
+  <h1>Insert Ilan's</h1>
+    <h3>Data Sources and Processing:</h3> 
+      
+    <h3>Design Process and Lessons Learned:</h3>
+  
+    <h3>Member Contributions:</h3>
+  <br><br>
+  
+  <h1>Insert Mike's</h1>
+      <h3>Data Sources and Processing:</h3> 
+      
+    <h3>Design Process and Lessons Learned:</h3>
+  
+    <h3>Member Contributions:</h3>
+  <br><br>
+  
+  <h1>Insert Connor's</h1>
+    <h3>Data Sources and Processing:</h3> 
+      
+    <h3>Design Process and Lessons Learned:</h3>
+  
+    <h3>Member Contributions:</h3>
+  <br><br>
+  
+  <h1>Onshore Wind Power Case Study - Steve</h1>
+    <h3>Data Sources and Processing:</h3> 
+    <strong>Datasets:</strong> 
+  
+    <ul>
+      <li> <a class="link" href="https://eerscmap.usgs.gov/uswtdb/" target="_blank">USGS Wind Turbine Database (2016) (updated 2022)</a> 
+      <br> This United States Geological Survey database contains 1990-2022 USGS data for the onshore distribution of wind turbines in the USA.
+      </li><br>     
+      <li> <a class="link" href="https://www.nrel.gov/grid/wind-toolkit.html" target="_blank">NREL WIND (2015)</a> 
+      <br> National Renewable Energy Laboratory (NREL) Wind Integration National Dataset (WIND) was published in 2015 and contains modeled 
+        wind speed, capacity factor, and area availability data. Wind speeds were modeled based on both observed and modeled meteorological 
+        data from 2007-2013, and potential capacity factors were then calculated based on these speeds. The areas available for wind turbine
+        development were generalized based on the amount of open space in each county.
+      </li><br>
+      <li> <a class="link" href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-counties-total.html" target="_blank">United States Census - County Population Totals (2021)</a> 
+      <br> The United States Census Bureau publishes this county population dataset annually, which contains estimated populations
+        for each county in the United States.
+      </li> <br>
+      <li> <a class="link" href="https://github.com/topojson/us-atlas" target="_blank">counties-albers-10m.json</a> 
+      <br> Projection map of United States counties used to create the map visualizations.
+      </li>
+    </ul>
+  
+    <strong>Processing:</strong><br>
+  
+    An extensive amount of data processing was done to merge these three datasets into one so that all the data could be compared.
+    The USGS turbine dataset contained only counties where turbines were reported, so using Excel functions, the reported number
+    of turbines for those counties were added as an attribute to the US Census dataset, which contained every US county. The remaining 
+    counties were then given a value of 0 for the number of turbines they had, and the data was saved as a new file, "full_dataset.csv". Within
+    the NREL dataset, there were multiple entries per county, so the metrics for each county were averaged so that a single value for each attribute
+    could be used to represent any county. Next, the wind metrics data from the NREL dataset had to be added to the full dataset, but again the NREL dataset did not have information
+    for every county. The datasets were merged, and the counties that did not have any wind metrics were given values of 0 for each missing 
+    attribute. This value was chosen because 0 was not a possible value for any of the attributes if data were available. Finally, with all 
+    of the data merged and any excess data deleted, fips codes were added to the counties in the dataset so they could be matched with 
+    the fips codes of the counties in the .JSON county map projection.
+  
+    <h3>Design Process and Lessons Learned:</h3>
+    The final visualizations look very similar to the original formats I proposed, though there are some differences. As planned, there is a choropleth county map that is shaded
+    based on the user selected variable from the dropdown menu. Color coding the different variables was pretty straightforward, and I chose to redundantly match them with the scatter plot circle
+    colors to reinforce audience retention of the data and build associations with colors and variables to make my visualizations more intuitive. Originally, I had hoped to color code the scatter plot circles
+    based on region of the United States (i.e. Northeast, Midwest, etc.) to help the user more easily find the counties on the map, but I chose not to do this because additional data processing would have been
+    required to group states by region, and the brushing feature of the plot allows the counties to be located quickly anyway. Furthermore, I think the correlated coloring of the map and scatter plot 
+    reinforces data retention well. 
+    <br><br>
+    The biggest challenge during the design process was map loading time. When I wrote my first iteration of code to create and color the choropleth map, it took a VERY long time to load. This 
+    was because the map was being redrawn every time the user changed the selected variable or brushed the scatter plot, resulting in long buffering times and a very laggy visualization.
+    To address this, the code was changed so that the map would not be redrawn with each update, and instead the opacities of the shaded counties would be changed to 0 if those counties were
+    not brushed. This sped up the brushing exponentially. Furthermore, the county projection object array was merged with my full dataset object array after some additional data processing 
+    so that the shading of the map upon a selection change could be quickly changed.
+    <br>
+    To speed up the loading of the map even more, the drawing of turbines was changed. Originally, each individual turbine was plotted on the map using its coordinates. Because there were so many turbines,
+    to plot, the process was very slow. After collaborating with Ilan and other teammates, it was decided that a circle map would be better, where the size of the circle indicates how many turbines are in 
+    a respective county relative to other counties. This made the drawing of the turbine distribution much faster. However, this blocked the map's tooltip when trying to hover over counties with larger 
+    circles overlayed on them. Thus, I decided to allow a toggle above the choropleth map to allow the user to turn of this display so that they can hover over all of the counties without issue. Furthermore, 
+    an enlarged map with the turbine distribution was provided so the circles could be seen clearly and largely on the map without any interference from underlying shading.
+    <br><br>
+    Overall, I learned a lot from this project. Some of my biggest takeaways involved data processing and code optimization. The initial data processing I was doing for the high-fidelity prototype took much
+    longer than expected and definitely slowed down the process of creating visualizations. However, this showed me the importance of doing thorough data processing, as it allowed for my code to work much more 
+    intuitively and simply. Furthermore, I learned just how quickly actions can get clogged up when you are working with a lot of data and updating multiple visualizations. This is why it is important to write 
+    succinct, optimized code and avoid unnecessary redundancy that could slow things down. I also learned that when planning intereactions, it is important to think about how they will be implemented and any
+    resulting limitations of that implementation. For example, I originally failed to consider that a tooltip will not show up for a county if I overlay circles on top of the county. Finally, I found the user-study
+    to be extremely helpful. The participants noticed things that I had overlooked as the developer and pointed out unclear instructions that I had originally thought could be understood by anybody. This all shows
+    that the process of creating visualizations is an iterative one that requires much editing and revision.
+  
+    <h3>Member Contributions:</h3>
+    <ul>
+      <li>Created updating choropleth county map and scatter plot with brushing and tooltips implemented</li>
+      <li>Formatted project info page</li>
+      <li>Assisted other members with debugging</li>
+    </ul>
+    
+  
+</div>
+
+<div>
+  
+</div>
+
+<div>
+  
+</div>

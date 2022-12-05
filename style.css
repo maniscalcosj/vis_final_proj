@@ -1,0 +1,189 @@
+body {
+/*   margin: 20px 10px; */
+  background-color: white;
+  color: white;
+}
+.button {
+	color: yellow;
+	background-color: black;
+	border: 1px solid yellow;
+}
+
+h3 {
+  text-align: center
+}
+
+em {
+  font-weight: bold;
+}
+
+.title-box {
+  text-align:center;
+  background-color: black;
+  color: yellow;
+}
+
+.title {
+  font-size: 4em;
+}
+
+.authors{
+  font-size: 2em;
+  /*color: white;*/
+}
+
+.button {
+  color: yellow;
+}
+
+
+.loading-screen {
+  text-align:center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 6em;
+}
+
+.btn {
+  text-align:center;
+  color: white;
+  /*background-color: black;*/
+}
+
+.section {
+  background-color: black;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+
+strong {
+  color: yellow
+}
+
+.section-header {
+  font-size: 4em;
+  text-align: center;
+  color: yellow;
+/*   position: sticky; */
+  top: 0;
+}
+
+.section-subheader {
+  margin: 50px 20px;
+  text-align: left;
+  font-size: 0.3em;
+  color: white;
+  
+}
+
+.section-contents {
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 20px;
+  color: black;
+  position: relatiave;
+  z-index: 9;  /* Have contents go over section header */
+/*   display: none; */
+}
+
+/* Color "strong" text in tooltip black */
+.s-black {
+  color: black
+}
+
+/* div {
+  border: 1px solid black;
+} */
+
+.counties :hover {
+  fill: red;
+}
+
+.county-borders {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+/* start connor */
+
+.center {
+/*   margin: auto; */
+/*   width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight {
+  fill: orange;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #dcdcdc;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #ffffff;
+  stroke: #000000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+.barLegend {
+  border-style: solid;
+  border-width: 5px;
+}
+
+/* end connor */
+
+#choiceSelector {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50%;
+}
+
+#energySelector {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50%;
+}
+
+#turbMapHeader {
+  text-align: center;
+}
+
+#turbMapSub {
+  text-align: center;
+}
+
+#popDisclaimer {
+  font-size: 14px;
+}
+
+.takeaways {
+  text-align: center;
+}
